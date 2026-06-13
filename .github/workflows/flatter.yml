@@ -4,6 +4,8 @@ on:
   push:
   pull_request:
   workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
 
 jobs:
   flatter:
@@ -12,11 +14,6 @@ jobs:
     container:
       image: ghcr.io/andyholmes/flatter/freedesktop:25.08
       options: --privileged
-    strategy:
-      matrix:
-        arch: [x86_64, aarch64]
-      fail-fast: false
-      max-parallel: 1
 
     steps:
       - name: Checkout
@@ -34,7 +31,6 @@ jobs:
         uses: crazy-max/ghaction-import-gpg@v6
         with:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
-          passphrase: ${{ secrets.GPG_PASSPHRASE }}
 
       - name: Build
         uses: andyholmes/flatter@main
