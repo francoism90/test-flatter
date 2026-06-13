@@ -41,9 +41,9 @@ jobs:
       - name: Build Packages
         uses: andyholmes/flatter@main
         with:
-          # A list of package manifests to build, relative to the repository root
+          # A list of package manifests to build
           files: |
-            src/org.freedesktop.Sdk.Extension.podman.yml
+            src/org.freedesktop.Sdk.Extension.podman/org.freedesktop.Sdk.Extension.podman.yml
           gpg-sign: ${{ steps.gpg.outputs.fingerprint }}
           upload-pages-artifact: true
           upload-pages-includes: |
