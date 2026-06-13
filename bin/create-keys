@@ -54,7 +54,3 @@ echo ""
 echo "⚠  Delete private.key after uploading it to GitHub secrets."
 echo "   Never commit it to the repository."
 echo ""
-
-# Hand off to configure-repo so repo.flatpakrepo is populated in the same run.
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-exec "${SCRIPT_DIR}/configure-repo" "${KEY_ID}"
