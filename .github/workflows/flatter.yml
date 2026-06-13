@@ -19,11 +19,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Generate a CNAME file in current directory
-      - name: Generate CNAME
-        run: |
-          echo "flatter.francoism90.ca" > CNAME
-
       - name: Setup GPG
         # Skip GPG signing for pull requests
         if: ${{ github.triggering_actor == github.repository_owner }}
