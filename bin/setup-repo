@@ -2,7 +2,7 @@
 # setup-repo — first-time setup wizard for your Flatpak repository.
 #
 # Checks prerequisites, generates a GPG signing key, and populates
-# repo.flatpakrepo — all in one command.
+# repo.flatpakrepo for Flatter — all in one command.
 #
 # Usage: bin/setup-repo
 
@@ -43,7 +43,7 @@ echo ""
 echo "Checking prerequisites..."
 echo ""
 
-for cmd in git gpg jq base64 skopeo; do
+for cmd in git gpg base64; do
   if command -v "${cmd}" > /dev/null 2>&1; then
     ok "${cmd}"
   else
@@ -54,8 +54,8 @@ done
 echo ""
 
 # Must run from the repository root
-if [[ ! -d "apps" ]]; then
-  fail "Run this script from the repository root (expected to find an apps/ directory)"
+if [[ ! -d "src" ]]; then
+  fail "Run this script from the repository root (expected to find a src/ directory)"
 fi
 
 # Must have a git remote configured
@@ -94,18 +94,22 @@ echo "━━━━━━━━━━━━━━━━━━━━━━━━�
 echo "  Next steps"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo ""
-echo "  1. Add the four secrets printed above to GitHub:"
+echo "  1. Add these GitHub Actions secrets:"
+echo "     - GPG_PRIVATE_KEY"
+echo "     - GPG_PASSPHRASE (only if your key has a passphrase)"
 echo "     https://github.com/$(git remote get-url origin | sed -E 's|.*github\.com[:/]||; s|\.git$||')/settings/secrets/actions"
 echo ""
-echo "  2. Commit and push:"
+echo "  2. Confirm workflow signing is enabled in .github/workflows/flatter.yml"
+echo ""
+echo "  3. Commit and push:"
 echo "     git add repo.flatpakrepo"
 echo "     git commit -m 'chore: initialise flatpak repository'"
 echo "     git push"
 echo ""
-echo "  3. After the workflow completes, make the GHCR packages public:"
+echo "  4. After the workflow completes, make the GHCR packages public:"
 echo "     https://github.com/$(git remote get-url origin | sed -E 's|.*github\.com[:/]([^/]+).*|\1|')?tab=packages"
 echo ""
-echo "  4. Delete private.key from your machine:"
+echo "  5. Delete private.key from your machine:"
 echo "     rm private.key"
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"

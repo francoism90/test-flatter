@@ -1,19 +1,14 @@
-# Flatpak build artifacts
-flatpak_app/
-repo/
-oci-bundle/
-.flatpak-builder/
-
-# Bundles
-*.flatpak
-
-# GPG private key — never commit this
-private.key
-*.key
-
-# Editor and OS files
 .DS_Store
-Thumbs.db
-*~
-*.swp
+.flatpak-builder/
+*.flatpak
+*.key
 *.swo
+*.swp
+*~
+dist/repo
+flatpak_app/
+node_modules
+oci-bundle/
+package-lock.json
+private.key
+Thumbs.db
