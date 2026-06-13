@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+# create-keys — generate a GPG signing key for your Flatpak repository and
+# print the values you need to add as GitHub repository secrets.
+#
+# Usage: bin/create-keys [NAME] [EMAIL]
+#   NAME   Human-readable key name  (default: "Flatpak Repo")
+#   EMAIL  Key email address        (default: "flatpak@example.com")
+#
+# The private key is written to private.key in the current directory.
+# Add its contents to the GPG_PRIVATE_KEY GitHub secret, then delete the file.
+
+set -euo pipefail
+
+NAME="${1:-Flatpak Repo}"
+EMAIL="${2:-flatpak@example.com}"
+
+echo "Generating GPG key for '${NAME} <${EMAIL}>'..."
+
+gpg --batch --gen-key <<EOF
+%no-protection
+Key-Type: RSA
+Key-Length: 4096
+Name-Real: ${NAME}
+Name-Email: ${EMAIL}
+Expire-Date: 0
+%commit
+EOF
+
+# Resolve the key ID from the email just created
+KEY_ID=$(gpg --list-secret-keys --keyid-format=long "${EMAIL}" \
+  | awk '/^sec/{split($2, a, "/"); print a[2]; exit}')
+
+gpg --armor --export-secret-key "${KEY_ID}" > private.key
+
+GPG_PRIVATE_B64=$(gpg --armor --export-secret-key "${KEY_ID}" | base64 --wrap=0)
+
+echo ""
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "  GitHub repository secrets"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo ""
+echo "  GPG_KEY_ID      ${KEY_ID}"
+echo "  GPG_PRIVATE_KEY (base64, single line — use the value below):"
+echo "  ${GPG_PRIVATE_B64}"
+echo ""
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo ""
+echo "⚠  Delete private.key after uploading it to GitHub secrets."
+echo "   Never commit it to the repository."
+echo ""
+
+# Hand off to configure-repo so repo.flatpakrepo is populated in the same run.
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+exec "${SCRIPT_DIR}/configure-repo" "${KEY_ID}"
