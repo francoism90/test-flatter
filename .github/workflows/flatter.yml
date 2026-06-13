@@ -32,6 +32,10 @@ jobs:
         with:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
 
+      - name: Install SDK Extensions
+        run: |
+          flatpak install --noninteractive flathub org.freedesktop.Sdk.Extension.golang//25.08
+
       - name: Build
         uses: andyholmes/flatter@main
         with:
