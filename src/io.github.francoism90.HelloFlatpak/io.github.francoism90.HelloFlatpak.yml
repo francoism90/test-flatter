@@ -1,0 +1,28 @@
+id: io.github.francoism90.HelloFlatpak
+runtime: org.freedesktop.Platform
+runtime-version: "25.08"
+sdk: org.freedesktop.Sdk
+command: hello-flatpak
+finish-args:
+  - --share=network
+  - --socket=fallback-x11
+  - --socket=wayland
+  - --device=dri
+  - --share=ipc
+modules:
+  - name: hello-flatpak
+    buildsystem: simple
+    build-commands:
+      - install -Dm755 hello-flatpak.sh /app/bin/hello-flatpak
+      - install -Dm644 io.github.francoism90.HelloFlatpak.desktop /app/share/applications/io.github.francoism90.HelloFlatpak.desktop
+      - install -Dm644 io.github.francoism90.HelloFlatpak.metainfo.xml /app/share/metainfo/io.github.francoism90.HelloFlatpak.metainfo.xml
+      - install -Dm644 io.github.francoism90.HelloFlatpak.svg /app/share/icons/hicolor/scalable/apps/io.github.francoism90.HelloFlatpak.svg
+    sources:
+      - type: file
+        path: hello-flatpak.sh
+      - type: file
+        path: io.github.francoism90.HelloFlatpak.desktop
+      - type: file
+        path: io.github.francoism90.HelloFlatpak.metainfo.xml
+      - type: file
+        path: io.github.francoism90.HelloFlatpak.svg

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Hello Flatpak
+Comment=Minimal app for testing Flatpak appstream publication
+Exec=hello-flatpak
+Icon=io.github.francoism90.HelloFlatpak
+Terminal=true
+Categories=Utility;
+StartupNotify=true
