@@ -14,10 +14,16 @@ Add the remote repository:
 flatpak --user remote-add --if-not-exists francoism90-podman https://francoism90.github.io/org.freedesktop.Sdk.Extension.podman/index.flatpakrepo
 ```
 
+Update the repository:
+
+```bash
+flatpak update
+```
+
 Install the extension:
 
 ```bash
-flatpak install francoism90-podman org.freedesktop.Sdk.Extension.podman
+flatpak install --user francoism90-podman org.freedesktop.Sdk.Extension.podman
 ```
 
 ## Usage
