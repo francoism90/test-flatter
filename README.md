@@ -4,16 +4,26 @@ This repository provides the Flatpak extension: `org.freedesktop.Sdk.Extension.p
 
 Numerous attempts were made to include this SDK upstream, but they were [rejected](https://github.com/flathub/flathub/pull/8677).
 
-Instead, this extension is built with [Flatter](https://github.com) using GitHub Actions and is signed with a GPG key. Please note that you use this extension at your own risk. Alternatively, you can build the extension yourself.
+Instead, this extension is built with [Flatter](https://github.com/andyholmes/flatter) using GitHub Actions and is signed with a GPG key. Please note that you use this extension at your own risk. Alternatively, you can build the extension yourself.
 
 ## Quick Start
 
-```bash
-# Add the remote repository
-flatpak remote-add --from https://francoism90.github.io/org.freedesktop.Sdk.Extension.podman/index.flatpakrepo francoism90-podman
+Add the remote repository:
 
-# Install the extension
-flatpak install francoism90-podman org.freedesktop.Sdk.Extension.podman
+```bash
+flatpak --user remote-add --if-not-exists francoism90-podman https://francoism90.github.io/org.freedesktop.Sdk.Extension.podman/index.flatpakrepo
+```
+
+Update the repository:
+
+```bash
+flatpak update
+```
+
+Install the extension:
+
+```bash
+flatpak install --user francoism90-podman org.freedesktop.Sdk.Extension.podman
 ```
 
 ## Usage
