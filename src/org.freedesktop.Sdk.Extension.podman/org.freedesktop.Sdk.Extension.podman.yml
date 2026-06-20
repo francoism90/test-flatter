@@ -1,8 +1,8 @@
-id: "org.freedesktop.Sdk.Extension.podman"
-branch: "25.08"
-runtime: "org.freedesktop.Sdk"
-sdk: "org.freedesktop.Sdk"
-runtime-version: "25.08"
+id: org.freedesktop.Sdk.Extension.podman
+branch: '25.08'
+runtime: org.freedesktop.Sdk
+sdk: org.freedesktop.Sdk
+runtime-version: '25.08'
 build-extension: true
 separate-locales: false
 sdk-extensions:
@@ -13,13 +13,13 @@ build-options:
   prefix: /usr/lib/sdk/podman
   append-path: /usr/lib/sdk/podman/bin:/usr/lib/sdk/golang/bin
 cleanup:
-  - "/include"
-  - "/lib/cmake"
-  - "/lib/pkgconfig"
-  - "/man"
-  - "*.a"
-  - "*.la"
-  - "*.pyc"
+  - /include
+  - /lib/cmake
+  - /lib/pkgconfig
+  - /man
+  - '*.a'
+  - '*.la'
+  - '*.pyc'
 modules:
   - name: podman
     buildsystem: simple
@@ -32,8 +32,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/containers/podman.git
-        tag: v5.8.2
-        commit: 5b263b5f5b48004a87caac44e67349a8266d9ef4
+        tag: v5.8.3
+        commit: 93dbfd0d86ee57f8f91801f61ce57dd880a4725f
         x-checker-data:
           type: json
           url: https://api.github.com/repos/containers/podman/releases/latest
@@ -46,7 +46,8 @@ modules:
   - name: podman_compose
     buildsystem: simple
     build-commands:
-      - pip3 install --prefix=${FLATPAK_DEST} --no-index --no-build-isolation --find-links=. .
+      - pip3 install --prefix=${FLATPAK_DEST} --no-index --no-build-isolation --find-links=.
+        .
     post-install:
       - patch ${FLATPAK_DEST}/bin/podman-compose 10-podman-compose-syspath.patch
     sources:
@@ -64,8 +65,8 @@ modules:
         path: patches/10-podman-compose-syspath.patch
         sha256: 2c1c961bbd035be3ac2f8631770b95dc2bec3eb46eed7e2bb974b83cc7a3679e
       - type: file
-        url: https://files.pythonhosted.org/packages/0b/d7/1959b9648791274998a9c3526f6d0ec8fd2233e4d4acce81bbae76b44b2a/python_dotenv-1.2.2-py3-none-any.whl
-        sha256: 1d8214789a24de455a8b8bd8ae6fe3c6b69a5e3d64aa8a8e5d68e694bbcb285a
+        url: https://files.pythonhosted.org/packages/82/ed/0301aeeac3e5353ef3d94b6ec08bbcabd04a72018415dcb29e588514bba8/python_dotenv-1.2.2.tar.gz
+        sha256: 2c371a91fbd7ba082c2c1dc1f8bf89ca22564a087c2c287cd9b662adde799cf3
         x-checker-data:
           type: pypi
           name: python-dotenv
