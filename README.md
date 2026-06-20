@@ -8,11 +8,15 @@ Instead, this extension is built with [Flatter](https://github.com/andyholmes/fl
 
 ## Quick Start
 
-```bash
-# Add the remote repository
-flatpak remote-add --from https://francoism90.github.io/org.freedesktop.Sdk.Extension.podman/index.flatpakrepo francoism90-podman
+Add the remote repository:
 
-# Install the extension
+```bash
+flatpak --user remote-add --if-not-exists francoism90-podman https://francoism90.github.io/org.freedesktop.Sdk.Extension.podman/index.flatpakrepo
+```
+
+Install the extension:
+
+```bash
 flatpak install francoism90-podman org.freedesktop.Sdk.Extension.podman
 ```
 
