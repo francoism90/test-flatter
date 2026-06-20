@@ -10,8 +10,8 @@ on:
     branches: [main]
   workflow_dispatch:
   schedule:
-    # Rebuild nightly to catch upstream changes
-    - cron: "0 2 * * *"
+    # Rebuild weekly to catch upstream changes
+    - cron: "0 2 * * 0"
 
 jobs:
   build:
@@ -44,7 +44,6 @@ jobs:
           # A list of package manifests to build
           files: |
             src/org.freedesktop.Sdk.Extension.podman/org.freedesktop.Sdk.Extension.podman.yml
-            src/io.github.francoism90.HelloFlatpak/io.github.francoism90.HelloFlatpak.yml
           gpg-sign: ${{ steps.gpg.outputs.fingerprint }}
           upload-pages-artifact: true
           upload-pages-includes: |
