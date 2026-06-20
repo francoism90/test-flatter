@@ -4,7 +4,7 @@ This repository provides the Flatpak extension: `org.freedesktop.Sdk.Extension.p
 
 Numerous attempts were made to include this SDK upstream, but they were [rejected](https://github.com/flathub/flathub/pull/8677).
 
-Instead, this extension is built with [Flatter](https://github.com) using GitHub Actions and is signed with a GPG key. Please note that you use this extension at your own risk. Alternatively, you can build the extension yourself.
+Instead, this extension is built with [Flatter](https://github.com/andyholmes/flatter) using GitHub Actions and is signed with a GPG key. Please note that you use this extension at your own risk. Alternatively, you can build the extension yourself.
 
 ## Quick Start
 
