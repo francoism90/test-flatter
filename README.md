@@ -26,6 +26,14 @@ Install the extension:
 flatpak install --user francoism90-podman org.freedesktop.Sdk.Extension.podman
 ```
 
+### Build
+
+If you prefer to build the extension yourself using Flatpak Builder:
+
+```bash
+flatpak run org.flatpak.Builder --install --user --force-clean --repo=repo build-dir org.freedesktop.Sdk.Extension.podman.yml
+```
+
 ## Usage
 
 To use the Podman SDK, enable the environment variable for your target application:
@@ -90,9 +98,6 @@ Update your project's `devcontainer.json` file with `runArgs` optimized for Podm
 #### Optional Flags
 
 - Append `--network=systemd-networkname` to allow network communication between containers.
--
-
-- Append `--network=systemd-networkname` to allow network communication between containers.
 - Append `--security-opt=label=disable` to prevent SELinux from restricting filesystem labels.
 
 If certain devcontainer images fail to build, you may need to force the Docker format during the build step:
@@ -104,12 +109,4 @@ If certain devcontainer images fail to build, you may need to force the Docker f
     "options": ["--format=docker"]
   }
 }
-```
-
-## Build Locally
-
-If you prefer to build the extension yourself, run:
-
-```bash
-flatpak-builder --repo repo .build org.freedesktop.Sdk.Extension.podman.yml --force-clean
 ```
