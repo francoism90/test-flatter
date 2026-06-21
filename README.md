@@ -43,6 +43,8 @@ Use `org.flatpak.Builder` to build and install the extension:
 flatpak run org.flatpak.Builder --install --user --force-clean --repo=repo build-dir org.freedesktop.Sdk.Extension.podman.yml
 ```
 
+> Note: The extension will be updated when you run `flatpak update`.
+
 ## Usage
 
 To use the Podman SDK, enable the environment variable for your target application:
