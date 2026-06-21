@@ -1,6 +1,6 @@
 # org.freedesktop.Sdk.Extension.podman
 
-This repository provides the Flatpak extension: `org.freedesktop.Sdk.Extension.podman`.
+This repository provides the Flatpak [Podman](https://podman.io/) extension: `org.freedesktop.Sdk.Extension.podman`.
 
 Numerous attempts were made to include this SDK upstream, but they were [rejected](https://github.com/flathub/flathub/pull/8677).
 
@@ -28,7 +28,16 @@ flatpak install --user francoism90-podman org.freedesktop.Sdk.Extension.podman
 
 ### Build
 
-If you prefer to build the extension yourself using Flatpak Builder:
+If you prefer to build the extension yourself:
+
+1. Git clone the repository:
+
+```bash
+git clone https://github.com/francoism90/org.freedesktop.Sdk.Extension.podman.git
+cd org.freedesktop.Sdk.Extension.podman
+```
+
+1. Use [Flatpak Builder](https://flathub.org/en/apps/org.flatpak.Builder) to build and install the extension:
 
 ```bash
 flatpak run org.flatpak.Builder --install --user --force-clean --repo=repo build-dir org.freedesktop.Sdk.Extension.podman.yml
