@@ -26,6 +26,8 @@ Install the extension:
 flatpak install --user francoism90-podman org.freedesktop.Sdk.Extension.podman
 ```
 
+> Note: The extension will automatically update when you run `flatpak update`.
+
 ### Build
 
 It is possible to build the extension yourself using [Flatpak Builder](https://flathub.org/en/apps/org.flatpak.Builder).
@@ -42,8 +44,6 @@ Use `org.flatpak.Builder` to build and install the extension:
 ```bash
 flatpak run org.flatpak.Builder --install --user --force-clean --repo=repo build-dir org.freedesktop.Sdk.Extension.podman.yml
 ```
-
-> Note: The extension will be updated when you run `flatpak update`.
 
 ## Usage
 
