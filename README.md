@@ -56,10 +56,12 @@ FLATPAK_ENABLE_SDK_EXT=podman
 For applications that require Podman socket support, enable the user service and grant the application read-only filesystem access to the socket:
 
 ```bash
-# Enable the user socket
 systemctl --user enable podman.socket --now
+```
 
-# Grant socket access to your Flatpak app (replace app-id)
+Grant socket access to your Flatpak app (replace app-id):
+
+```bash
 flatpak override --user --filesystem=xdg-run/podman:ro app-id
 ```
 
