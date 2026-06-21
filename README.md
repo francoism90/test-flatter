@@ -28,16 +28,16 @@ flatpak install --user francoism90-podman org.freedesktop.Sdk.Extension.podman
 
 ### Build
 
-If you prefer to build the extension yourself:
+It is possible to build the extension yourself using [Flatpak Builder](https://flathub.org/en/apps/org.flatpak.Builder).
 
-1. Git clone the repository:
+Git clone the repository:
 
 ```bash
 git clone https://github.com/francoism90/org.freedesktop.Sdk.Extension.podman.git
 cd org.freedesktop.Sdk.Extension.podman
 ```
 
-1. Use [Flatpak Builder](https://flathub.org/en/apps/org.flatpak.Builder) to build and install the extension:
+Use `org.flatpak.Builder` to build and install the extension:
 
 ```bash
 flatpak run org.flatpak.Builder --install --user --force-clean --repo=repo build-dir org.freedesktop.Sdk.Extension.podman.yml
